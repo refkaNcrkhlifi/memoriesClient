@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import App from './App';
 import posts from './reducers';
+import './index.css';
 
 const store = createStore(posts, compose(applyMiddleware(thunk)))
 ReactDOM.render(

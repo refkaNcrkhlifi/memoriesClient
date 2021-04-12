@@ -9,7 +9,13 @@ function Posts(props) {
 
     return (
         !posts.length ? <CircularProgress /> : (
-            <Grid className={classes.mainContainer} container spacing={3} alignItems="stretch">
+            <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                {
+                    posts.map((post) => (
+                        <Grid item xs={12} sm={6} md={6} key={post.id}>
+                            <Post post={post} />
+                        </Grid>
+                    ))}
 
             </Grid >
         )
