@@ -9,10 +9,17 @@ export const getPosts = () => async (dispatch) => {
 }
 export const AddPosts = (post) => async (dispatch) => {
     try {
-        const reslt = await postApi.AddPostes(post)
-        console.log("55555", reslt);
-        dispatch({ type: "ADD_POST", payload: reslt.data })
+        const result = await postApi.AddPostes(post)
+        dispatch({ type: "ADD_POST", payload: result.data })
     } catch (error) {
         console.log("ADD post error ", error.message);
+    }
+}
+export const updatePosts = (post, curentPostId) => async (dispatch) => {
+    try {
+        const { data } = await postApi.updatePostes(post, curentPostId)
+        dispatch({ type: "UPDATE_POST", payload: data })
+    } catch (error) {
+        console.log("UPDATE post error ", error.message);
     }
 }

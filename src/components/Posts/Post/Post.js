@@ -5,9 +5,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import useStyles from './styles';
-function Post({ post }) {
+function Post({ post, curentPostId, setCurentPostId }) {
     const classes = useStyles()
-    console.log(post);
     return (
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
@@ -18,7 +17,7 @@ function Post({ post }) {
             </div>
 
             <div className={classes.overlay2}>
-                <Button onClick={() => { }} style={{ color: "white" }} size="small"><MoreHorizIcon fontSize="default" /></Button>
+                <Button onClick={() => { setCurentPostId(post._id) }} style={{ color: "white" }} size="small"><MoreHorizIcon fontSize="default" /></Button>
             </div>
 
             <div className={classes.details}>
