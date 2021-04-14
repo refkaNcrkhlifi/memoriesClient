@@ -35,7 +35,7 @@ function Form({ curentPostId, setCurentPostId }) {
                 <TextField value={postDatta.title} name="title" label="Title" variant="outlined" onChange={(e) => setPostDatta({ ...postDatta, title: e.target.value })} fullWidth />
                 <TextField value={postDatta.creator} name="creator" label="Creator" variant="outlined" onChange={(e) => setPostDatta({ ...postDatta, creator: e.target.value })} fullWidth />
                 <TextField value={postDatta.message} name="message" label="Message" variant="outlined" onChange={(e) => setPostDatta({ ...postDatta, message: e.target.value })} fullWidth />
-                <TextField value={postDatta.tags} name="tags" label="Tags" variant="outlined" onChange={(e) => setPostDatta({ ...postDatta, tags: e.target.value })} fullWidth />
+                <TextField value={postDatta.tags} name="tags" label="Tags" variant="outlined" onChange={(e) => setPostDatta({ ...postDatta, tags: e.target.value.split(",") })} fullWidth />
 
                 <div className={classes.fileInput}>
                     <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostDatta({ ...postDatta, selectedFile: base64 })} />

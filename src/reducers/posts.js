@@ -7,6 +7,7 @@ export default (state = [], action) => {
             return [...state, action.payload]
 
         case "UPDATE_POST":
+        case "LIKE_POST":
             return state.map((post) => post._id === action.payload._id ? action.payload : post)
 
         case "DELETE_POST":
