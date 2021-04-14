@@ -23,3 +23,12 @@ export const updatePosts = (post, curentPostId) => async (dispatch) => {
         console.log("UPDATE post error ", error.message);
     }
 }
+export const deletePost = (postId) => async (dispatch) => {
+    try {
+        console.log('777777', postId);
+        //    await postApi.deletePoste(postId) 
+        dispatch({ type: "DELETE_POST", payload: postId })
+    } catch (error) {
+        console.log("UPDATE post error ", error.message);
+    }
+}
