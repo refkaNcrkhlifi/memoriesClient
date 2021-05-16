@@ -16,7 +16,7 @@ function Post({ post, curentPostId, setCurentPostId }) {
 
             <div className={classes.overlay}>
                 <Typography variant="h6">{post.creator}</Typography>
-                <Typography variant="body2">{moment(post.creaedAt).from()}</Typography>
+                <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
             </div>
 
             <div className={classes.overlay2}>

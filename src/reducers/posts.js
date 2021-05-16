@@ -1,5 +1,5 @@
-import {FETCH_POSTES,ADD_POST,UPDATE_POST,DELETE_POST,LIKE_POST  } from '../constants/actionTypes';
-export default (state = [], action) => {
+import { FETCH_POSTES, ADD_POST, UPDATE_POST, DELETE_POST, LIKE_POST } from '../constants/actionTypes';
+const posts = (state = [], action) => {
     switch (action.type) {
         case FETCH_POSTES:
             return action.payload
@@ -16,6 +16,6 @@ export default (state = [], action) => {
 
         default:
             return state
-            break;
     }
 }
+export default posts
