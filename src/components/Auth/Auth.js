@@ -8,6 +8,7 @@ import { Input } from './Input';
 import Icon from './Icon';
 import { useDispatch } from 'react-redux';
 import { AUTH } from '../../constants/actionTypes';
+import { useHistory } from 'react-router';
 
 
 function Auth() {
@@ -15,22 +16,18 @@ function Auth() {
     const [isSignUp, setisSignUp] = useState(false)
     const classes = useStyles()
     const dispatch = useDispatch()
+    const history = useHistory()
     const hudelSubmit = () => { }
     const hundelChange = () => { }
     const switchMode = () => setisSignUp((prevState) => !prevState)
     const hundelShowPassword = () => setshowPassword((prevValue) => !prevValue)
 
-    const googleSuccess = (res) => {
+    const googleSuccess = async (res) => {
         const result = res?.profileObj
         const token = res?.tokenId
         try {
-            dispatch({
-                type: AUTH,
-                payload: {
-                    result
-                    , token
-                }
-            })
+            dispatch({ type: AUTH, payload: { result, token } })
+            history.push('/')
         } catch (error) {
             console.log(error);
         }

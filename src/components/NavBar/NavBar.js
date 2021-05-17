@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import memories from '../../images/memories.png';
 import useStyles from './styles';
+import { useDispatch } from 'react-redux';
+import { LOGOUT } from '../../constants/actionTypes';
 
 export default function NavBar() {
     const classes = useStyles()
-    const user = null
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const location = useLocation()
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
+    useEffect(() => {
+        // const token = user?.token
+
+
+        setUser(JSON.parse(localStorage.getItem('profile')))
+    }, [location])
+    const hundelLogOut = () => {
+        setUser(null)
+        dispatch({ type: LOGOUT })
+        history.push('/auth')
+    }
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
             <div className={classes.brandContainer}>
@@ -18,8 +34,8 @@ export default function NavBar() {
                     user ? (
                         <div className={classes.profile}>
                             <Avatar className={classes.purple} alt={user.result.name} src={user.result.image}>{user.result.name.charAt(0)}</Avatar>
-                            <Typography className={classes.userName} variant="h2">{user.result.name}</Typography>
-                            <Button variant="contained" color="secondary" className={classes.logout}>Logout</Button>
+                            <Typography className={classes.userName} variant="h6">{user.result.name}</Typography>
+                            <Button variant="contained" color="secondary" className={classes.logout} onClick={hundelLogOut}>Logout</Button>
                         </div>
                     ) : (<Button component={Link} to="/auth" variant="contained" color="primary" className={classes.signin}>Signin</Button>)
                 }
