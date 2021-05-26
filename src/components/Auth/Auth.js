@@ -9,18 +9,28 @@ import Icon from './Icon';
 import { useDispatch } from 'react-redux';
 import { AUTH } from '../../constants/actionTypes';
 import { useHistory } from 'react-router';
+import { signIn, signUp } from '../../actions/auth';
 
-
+const initinalUserState = { firstName: "", lastName: "", email: "", password: "", confirmPassword: "" }
 function Auth() {
     const [showPassword, setshowPassword] = useState(false)
     const [isSignUp, setisSignUp] = useState(false)
+    const [userData, setUserData] = useState(initinalUserState)
     const classes = useStyles()
     const dispatch = useDispatch()
     const history = useHistory()
-    const hudelSubmit = () => { }
-    const hundelChange = () => { }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        isSignUp ? dispatch(signIn(userData, history)) : dispatch(signUp(userData, history))
+        console.log(userData);
+    }
+    const handleChange = (e) => {
+        console.log("chagess");
+        setUserData({ ...userData, [e.target.name]: e.target.value })
+    }
     const switchMode = () => setisSignUp((prevState) => !prevState)
-    const hundelShowPassword = () => setshowPassword((prevValue) => !prevValue)
+    const handleShowPassword = () => setshowPassword((prevValue) => !prevValue)
 
     const googleSuccess = async (res) => {
         const result = res?.profileObj
@@ -42,17 +52,17 @@ function Auth() {
                     <LockOutLineIcon />
                 </Avatar>
                 <Typography variant="h5">{isSignUp ? "sign up" : "sign in"}</Typography>
-                <form autoComplete="off" onSubmit={hudelSubmit} className={classes.form}>
+                <form autoComplete="off" onSubmit={handleSubmit} className={classes.form}>
                     <Grid container spacing={3}>
                         {isSignUp && (
                             <>
-                                <Input name="firstName" label="First name" onChange={hundelChange} autoFocus half />
-                                <Input name="lastName" label="Last name" onChange={hundelChange} half />
+                                <Input name="firstName" label="First name" handleChange={handleChange} autoFocus half />
+                                <Input name="lastName" label="Last name" handleChange={handleChange} half />
                             </>
                         )}
-                        <Input name="email" label="Email adress" onChange={hundelChange} type={"email"} />
-                        <Input name="password" label="Password" onChange={hundelChange} type={showPassword ? "text" : "password"} hundelShowPassword={hundelShowPassword} />
-                        {isSignUp && (<Input name="confirmPassword" label="Confirm Password" onChange={hundelChange} type={"password"} />)}
+                        <Input name="email" label="Email adress" handleChange={handleChange} type={"email"} />
+                        <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
+                        {isSignUp && (<Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type={"password"} />)}
                     </Grid>
                     <Button className={classes.submit} variant="contained" type='submit' color='primary' fullWidth>{isSignUp ? "sign up" : "sign in"}</Button>
                     <GoogleLogin

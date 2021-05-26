@@ -3,12 +3,12 @@ import Visibilty from '@material-ui/icons/Visibility'
 import VisibiltyOff from '@material-ui/icons/VisibilityOff'
 import React from 'react'
 
-export const Input = ({ half, name, label, hundelChange, type, autoFocus, hundelShowPassword }) => {
+export const Input = ({ half, name, label, handleChange, type, autoFocus, handleShowPassword }) => {
     return (
         <Grid item xs={12} sm={half ? 6 : 12}>
             <TextField name={name}
                 label={label}
-                onChange={hundelChange}
+                onChange={handleChange}
                 type={type}
                 variant="outlined"
                 required
@@ -18,7 +18,7 @@ export const Input = ({ half, name, label, hundelChange, type, autoFocus, hundel
                     name === "password" ? {
                         endAdornment: (
                             <InputAdornment position="end">
-                                <IconButton onClick={hundelShowPassword}>
+                                <IconButton onClick={handleShowPassword}>
                                     {type === "password" ? <Visibilty /> : <VisibiltyOff />}
                                 </IconButton>
                             </InputAdornment>
