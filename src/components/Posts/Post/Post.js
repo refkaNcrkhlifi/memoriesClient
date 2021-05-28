@@ -15,7 +15,7 @@ function Post({ post, curentPostId, setCurentPostId }) {
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
 
             <div className={classes.overlay}>
-                <Typography variant="h6">{post.creator}</Typography>
+                <Typography variant="h6">{post.name}</Typography>
                 <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
             </div>
 
@@ -35,7 +35,7 @@ function Post({ post, curentPostId, setCurentPostId }) {
 
             <CardActions className={classes.cardActions}>
                 <Button onClick={() => { dispatch(likePost(post._id)) }} color="primary" size="small"><ThumbUpAlt fontSize="small" />
-                &nbsp; like &nbsp;{post.likeNumber} </Button>
+                &nbsp; like &nbsp;{post.likes.length} </Button>
 
                 <Button onClick={() => {
                     dispatch(deletePost(post._id))

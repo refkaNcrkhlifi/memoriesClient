@@ -21,12 +21,9 @@ function Auth() {
     const history = useHistory()
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        isSignUp ? dispatch(signIn(userData, history)) : dispatch(signUp(userData, history))
-        console.log(userData);
+        isSignUp===false ? dispatch(signIn(userData, history)) : dispatch(signUp(userData, history))
     }
     const handleChange = (e) => {
-        console.log("chagess");
         setUserData({ ...userData, [e.target.name]: e.target.value })
     }
     const switchMode = () => setisSignUp((prevState) => !prevState)

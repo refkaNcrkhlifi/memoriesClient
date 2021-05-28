@@ -1,5 +1,5 @@
 import {FETCH_POSTES,ADD_POST,UPDATE_POST,DELETE_POST,LIKE_POST  } from '../constants/actionTypes';
-import * as postApi from '../api/posts';
+import * as postApi from '../api';
 
 export const getPosts = () => async (dispatch) => {
     try {

@@ -6,14 +6,14 @@ import useStyles from './styles';
 function Posts({ curentPostId, setCurentPostId }) {
     const classes = useStyles()
     const posts = useSelector((state) => state.posts)
-    console.log("posts", posts);
+   
 
     return (
         !posts.length ? <CircularProgress /> : (
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>
                 {
                     posts.map((post) => (
-                        <Grid item xs={12} sm={6} md={6} key={post.id}>
+                        <Grid item xs={12} sm={6} md={6} key={post._id} >
                             <Post key={post._id} post={post} curentPostId={curentPostId} setCurentPostId={setCurentPostId} />
                         </Grid>
                     ))}
