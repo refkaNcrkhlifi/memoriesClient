@@ -43,4 +43,15 @@ export default makeStyles((theme) => ({
         color: theme.palette.getContrastText(deepPurple[500]),
         backgroundColor: deepPurple[500],
     },
+    [theme.breakpoints.down('sm')]: {
+        appBar: {
+            display: 'block',
+            padding: '10px 20px',
+        },
+        toolbar: {
+            width: '250px',
+            margin: '10px 10px',
+            padding: 0
+        },
+    },
 }));
